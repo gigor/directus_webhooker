@@ -8,19 +8,19 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware for parsing JSON bodies
-app.use(express.json());
-
 // Middleware for raw bodies (used by webhooks)
-app.use('/webhook', express.raw({ type: '*/*' }));
+app.use('/webhooks/mux', express.raw({ type: '*/*' }));
+
+// Middleware for parsing JSON bodies (for other routes)
+app.use(express.json());
 
 // Basic health check endpoint
 app.get('/health', (req, res) => {
     res.json({ status: 'ok' });
 });
 
-// Register webhook routes
-app.use('/webhook', webhookRouter);
+// Register webhook routes at the root level
+app.use('/', webhookRouter);
 
 // Start the server
 app.listen(port, () => {

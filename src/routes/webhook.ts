@@ -5,16 +5,21 @@ import { search_mux_upload, update_mux_upload } from '@/services/directus';
 const router = Router();
 
 const handle_mux_webhook: RequestHandler = async (req, res): Promise<void> => {
+    
     const mux = new Mux({
         tokenId: process.env.MUX_TOKEN_ID,
         tokenSecret: process.env.MUX_TOKEN_SECRET,
         webhookSecret: process.env.MUX_WEBHOOK_SECRET
     });
 
+
     try {
+        // Convert Buffer to string
+        const raw_body = req.body.toString('utf8');
+        
         let event;
         try {
-            event = mux.webhooks.unwrap(req.body, req.headers);
+            event = mux.webhooks.unwrap(raw_body, req.headers);
         } catch (error) {
             console.error(error);
             res.status(200).send();
