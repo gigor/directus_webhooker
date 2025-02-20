@@ -1,0 +1,37 @@
+{
+    "name": "directus_webhooker",
+    "version": "1.0.0",
+    "description": "A service for receiving webhooks, verifying them, and calling third-party APIs",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/index.ts",
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "lint": "prettier --plugin-search-dir . --check . && eslint .",
+        "format": "prettier --plugin-search-dir . --write .",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "webhook",
+        "api",
+        "typescript"
+    ],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.13.4",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "ts-node-dev": "^2.0.0",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "^5.7.3"
+    },
+    "dependencies": {
+        "@mux/mux-node": "^9.0.1",
+        "axios": "^1.7.9",
+        "eslint": "^9.20.1",
+        "eslint-config-prettier": "^10.0.1",
+        "prettier": "^3.5.1"
+    }
+}
