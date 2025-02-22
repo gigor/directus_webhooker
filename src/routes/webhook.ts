@@ -1,6 +1,6 @@
 import { Router, RequestHandler } from 'express';
 import Mux from '@mux/mux-node';
-import { search_mux_upload, update_mux_upload } from '@/services/directus';
+import { search_mux_upload, update_mux_upload } from '../services/directus';
 
 const router = Router();
 
